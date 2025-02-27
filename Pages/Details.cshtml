@@ -1,0 +1,58 @@
+@page 
+@model DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="page-content">
+
+<h1>@Model.Pet.Name Details</h1>
+<div>
+    <img src="@Model.Pet.ImageUrl" alt="@Model.Pet.Name" class="img-fluid rounded-3" style="width: 400px; height: 400px; object-fit: cover;">
+    <p><strong>Type:</strong> @Model.Pet.Type</p>
+    <p><strong>Age:</strong> @Model.Pet.Age</p>
+    <p><strong>Gender:</strong> @Model.Pet.Gender</p>
+    <p><strong>Breed:</strong> @Model.Pet.Breed</p>
+    <p><strong>Status:</strong> @Model.Pet.Status</p>
+    <p><strong>Description:</strong></p>
+    <pre>@Model.Pet.Description</pre>
+</div>
+
+<h1>ADDITIONAL INFORMATION</h1>
+
+<div>
+ <p><strong>Email:</strong> @Model.Pet.ContactEmail</p>
+ <p><strong>Phone:</strong> @Model.Pet.ContactPhone</p>
+ <p><strong>Address 1:</strong> @Model.Pet.ContactAddress1</p>
+ <p><strong>Address 2:</strong> @Model.Pet.ContactAddress2</p>
+ <p><strong>City:</strong> @Model.Pet.ContactCity</p>
+ <p><strong>State:</strong> @Model.Pet.ContactState</p>
+ <p><strong>Country:</strong> @Model.Pet.ContactCountry</p>
+  <a href="@Model.Pet.Link" target="_blank" class="text-dark">View Adoption Page</a>
+</div>
+<div class="mt-5 mb-5"></div>
+
+ <a href="/Rescue" class="btn btn-primary">Back to Search</a>
+ 
+ <div><p><strong>Or</strong></p></div>
+
+ <form method="post">
+    <input type="hidden" name="petId" value="@Model.Pet.PetId" />
+    <input type="hidden" name="name" value="@Model.Pet.Name" />
+    <input type="hidden" name="imageUrl" value="@Model.Pet.ImageUrl" />
+    <input type="hidden" name="breed" value="@Model.Pet.Breed" />
+    <input type="hidden" name="type" value="@Model.Pet.Type" />
+
+    <button type="submit" asp-page-handler="SaveFavorite" class="btn btn-primary">
+        Save to Favorites
+    </button>
+</form>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning">@TempData["Message"]</div>
+}
+
+
+ 
+
+</div>

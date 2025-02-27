@@ -1,0 +1,103 @@
+html {
+  font-size: 14px;
+}
+
+
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family: "Itim", serif;
+  font-weight: 400;
+  font-style: normal;
+  background-image: url('/images/background.jpg'); /* Correct path */
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  background-position: top left;
+}
+  
+
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+.card {
+  transition: transform 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.5); /* White background with 50% opacity */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Zoom effect */
+  animation: animate__animated animate__pulse; /* Apply Animate.css pulse animation on hover */
+}
+
+.navbar .nav-link {
+  font-weight: bold; /* Makes the text bold */
+}
+
+.navbar-brand{
+  font-weight: bold;
+}
+
+.page-content {
+  position: relative;
+  padding: 40px;
+  color: #fff; /* White text for contrast */
+  z-index: 1; /* Make sure it appears above the background */
+  border-radius: 15px; /* Rounded corners for the container */
+
+}
+
+.page-content:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  z-index: -1; /* Place the overlay behind the content */
+  border-radius: 15px; /* Apply the same border-radius to the overlay */
+}
+
+.card-title{
+color: #fff;
+}
+
+.card-text{
+  color: #fff;
+
+}
+
+.MyTitle {
+  font-size: 30px;  /* Adjust the font size as needed */
+}
+
+
+
+
+
+
+
+
+

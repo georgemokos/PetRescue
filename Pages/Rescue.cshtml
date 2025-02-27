@@ -1,0 +1,104 @@
+@page
+@model RescueModel 
+@{
+    ViewData["Title"] = "Rescue page";
+}
+
+<head>
+    <title>Pet Rescue</title>
+</head>
+
+<header class="text-center">
+    <h1 class="display-4 animate__animated animate__zoomIn">Pet Rescue</h1>
+</header>
+
+<body class="text-bg-light">
+    <form method="post" class="d-flex justify-content-center mt-4">
+        <input class="form-control w-50" placeholder="Enter location" type="text" id="location" name="location" value="@Model.Location" >
+        <button type="submit" class="btn btn-primary ms-2">Rescue</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="error-message d-flex justify-content-center" style="color: red;">
+            @Model.ErrorMessage
+        </div>
+    }
+    
+
+    <div class="container mt-4 align-items-center">
+        <div class="row">
+            @foreach (var animal in Model.Pets)
+            {
+                <div class="col-md-4 mt-4 d-flex justify-content-center">
+                    <div class="card" style="width:1000px;">
+                        <div class="card-body">
+                            <img src="@animal.ImageUrl" alt="@animal.Name" class="w-50 mx-auto d-block rounded mt-4">
+                            <strong><h5 class="card-title">@animal.Name</h5></strong>
+                            <strong><h5 class="card-title">@animal.Gender</h5></strong>
+                            <p class="card-text">Breed: @animal.Breed</p>
+                            <p class="card-text">Age: @animal.Age</p>
+                            <p class="card-text">@animal.Status</p>
+                            <a asp-page="Details" asp-route-PetId="@animal.PetId" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Pagination Controls -->
+@if (Model.TotalPages > 1)
+{
+    <div class="d-flex justify-content-center mt-4">
+        <nav>
+            <ul class="pagination">
+                @if (Model.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <form method="post">
+                            <input type="hidden" name="location" value="@Model.Location" />
+                            <input type="hidden" name="pageNumber" value="@(Model.CurrentPage - 1)" />
+                            <button type="submit" class="page-link">Previous</button>
+                        </form>
+                    </li>
+                }
+
+                @{
+                    int startPage = Math.Max(1, Model.CurrentPage - 2);
+                    int endPage = Math.Min(Model.TotalPages, Model.CurrentPage + 2);
+
+                    // Ensure we show at most 5 pages
+                    if (Model.TotalPages > 6)
+                    {
+                        startPage = Math.Max(1, Model.CurrentPage - 2);
+                        endPage = Math.Min(Model.TotalPages, startPage + 5);
+                    }
+                }
+
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <form method="post">
+                            <input type="hidden" name="location" value="@Model.Location" />
+                            <input type="hidden" name="pageNumber" value="@i" />
+                            <button type="submit" class="page-link">@i</button>
+                        </form>
+                    </li>
+                }
+
+                @if (Model.CurrentPage < Model.TotalPages)
+                {
+                    <li class="page-item">
+                        <form method="post">
+                            <input type="hidden" name="location" value="@Model.Location" />
+                            <input type="hidden" name="pageNumber" value="@(Model.CurrentPage + 1)" />
+                            <button type="submit" class="page-link">Next</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+}
+</body>

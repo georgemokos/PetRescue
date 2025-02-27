@@ -1,0 +1,35 @@
+@page 
+@model FavoritesModel
+@{
+    ViewData["Title"] = "Favorites";
+}
+
+@if (Model.FavoritePets == null || !Model.FavoritePets.Any()) 
+{
+    <div class="alert alert-info">
+        No favorite pets.
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var pet in Model.FavoritePets)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <img src="@pet.ImageUrl" class="card-img-top" alt="@pet.Name" style="max-height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@pet.Name</h5>
+                        <p class="card-text"><strong>Type:</strong> @pet.Type</p>
+                        <p class="card-text"><strong>Breed:</strong> @pet.Breed</p>
+                        <p class="card-text"><strong>Pet ID:</strong> @pet.PetId</p>
+                        <form method="post" asp-page-handler="RemoveFavorite">
+                            <input type="hidden" name="petId" value="@pet.PetId" />
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
