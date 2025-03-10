@@ -33,7 +33,7 @@ PetRescue is a web application designed to streamline the pet adoption process i
 
 ### Prerequisites
 
-- [.NET SDK](https://dotnet.microsoft.com/download) (version 6.0 or later)
+- [.NET SDK](https://dotnet.microsoft.com/download) (version 9.0 or later)
 - [Visual Studio](https://visualstudio.microsoft.com/) or your preferred IDE
 - SQLite (or an alternative SQL database)
 - Basic knowledge of C# and ASP.NET Core
